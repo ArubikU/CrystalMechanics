@@ -1,0 +1,14 @@
+api-version: '1.21'
+name: FloamyArmor
+version: 1.1.0
+main: dev.arubiku.crystal.crystal
+description: A Minecraft plugin for redstone enthusiasts
+authors:
+- ArubikU
+commands:
+    crystal:
+        description: crystal main command
+        permission: crystal.use
+permissions:
+    crystal.use:
+        description: Allows use of crystal commands
