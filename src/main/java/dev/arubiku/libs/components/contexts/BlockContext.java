@@ -7,19 +7,19 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 
-import dev.arubiku.libs.blocker.FeaturedBlock;
+import dev.arubiku.libs.blocker.FeaturedBlockI;
 import dev.arubiku.libs.components.InvokerContext;
 
 public class BlockContext implements InvokerContext {
-  FeaturedBlock block;
+  FeaturedBlockI block;
   Block blockD = null;
 
-  public BlockContext(FeaturedBlock block, Block blockD) {
+  public BlockContext(FeaturedBlockI block, Block blockD) {
     this.block = block;
     this.blockD = blockD;
   }
 
-  public BlockContext(FeaturedBlock block) {
+  public BlockContext(FeaturedBlockI block) {
     this.block = block;
     this.blockD = block.getLocation().getBlock();
   }

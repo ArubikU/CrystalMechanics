@@ -17,6 +17,7 @@ import dev.arubiku.crystal.addons.AddonProvider;
 import dev.arubiku.crystal.triggers.Basic;
 import dev.arubiku.libs.blocker.FeaturedBlock;
 import dev.arubiku.libs.blocker.FeaturedBlock.BlockType;
+import dev.arubiku.libs.blocker.FeaturedBlockI;
 import dev.arubiku.libs.components.ConfigurationReader;
 import dev.arubiku.libs.components.InvokerContext;
 import dev.arubiku.libs.components.PackagedComponent;
@@ -31,16 +32,20 @@ public class Mechanics extends JavaPlugin {
   public Map<Integer, List<Addon>> blockaddons = new HashMap<>();
   public Map<Integer, String> blocksconfigs = new HashMap<>();
   public Map<String, YamlConfiguration> configurationFiles = new HashMap<>();
-  private List<AddonProvider<?>> addons = new ArrayList<>();
+  public List<AddonProvider<?>> addons = new ArrayList<>();
   private ConfigurationReader reader = null;
   @Getter
   private CrystalDataManager data = null;
 
+  @Getter
+  private static Mechanics plugin;
+
   @Override
   public void onEnable() {
+    Mechanics.plugin = this;
     this.data = new CrystalDataManager(new YamlCrystalData(this));
     this.reader = new ConfigurationReader();
-
+    Utils.setupData(this);
     loadBlocks();
   }
 
@@ -158,7 +163,7 @@ public class Mechanics extends JavaPlugin {
     }
   }
 
-  public void createBlock(FeaturedBlock block, InvokerContext context) {
+  public void createBlock(FeaturedBlockI block, InvokerContext context) {
     CrystalBlock cblock = data.addCrystalBlock(block);
 
     configurationFiles.forEach((path, config) -> {

@@ -23,6 +23,10 @@ repositories {
     maven("https://jitpack.io")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven("https://oss.sonatype.org/content/repositories/snapshots")
+    maven("https://www.matteodev.it/spigot/public/maven/")
+    flatDir {
+        dirs("libs")
+    }
 }
 
 dependencies {
@@ -36,6 +40,8 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.30")
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
+
+  compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
 }
 

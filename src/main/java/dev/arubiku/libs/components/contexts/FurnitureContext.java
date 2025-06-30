@@ -9,20 +9,20 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 
-import dev.arubiku.libs.blocker.FeaturedBlock;
 import dev.arubiku.libs.blocker.FeaturedBlock.BlockType;
+import dev.arubiku.libs.blocker.FeaturedBlockI;
 import dev.arubiku.libs.components.InvokerContext;
 
 public class FurnitureContext implements InvokerContext {
-  FeaturedBlock block;
+  FeaturedBlockI block;
   Entity entity = null;
 
-  public FurnitureContext(FeaturedBlock block, Entity entity) {
+  public FurnitureContext(FeaturedBlockI block, Entity entity) {
     this.block = block;
     this.entity = entity;
   }
 
-  public FurnitureContext(FeaturedBlock block) {
+  public FurnitureContext(FeaturedBlockI block) {
     this.block = block;
     this.entity = block.getEntity();
   }

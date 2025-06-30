@@ -5,7 +5,7 @@ import java.util.function.Function;
 
 import com.google.gson.JsonObject;
 
-import dev.arubiku.libs.blocker.FeaturedBlock;
+import dev.arubiku.libs.blocker.FeaturedBlockI;
 import lombok.Getter;
 
 public class CrystalDataManager {
@@ -26,7 +26,7 @@ public class CrystalDataManager {
 
   }
 
-  public CrystalBlock addCrystalBlock(FeaturedBlock block) {
+  public CrystalBlock addCrystalBlock(FeaturedBlockI block) {
     CrystalBlock metablock = new CrystalBlock(generateId(), block.getLocation(), block.getBlockType());
     data.updateBlock(metablock);
     return metablock;

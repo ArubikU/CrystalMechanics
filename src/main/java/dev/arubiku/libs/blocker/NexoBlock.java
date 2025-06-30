@@ -2,42 +2,43 @@ package dev.arubiku.libs.blocker;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 
-public class VanillaBlock implements FeaturedBlock {
+public class NexoBlock implements FeaturedBlock {
 
-  private final Block block;
-  private final int id;
+  private final Location block;
+  private final String key;
+  private boolean isEntity;
 
-  public VanillaBlock(Block block, int id) {
+  public NexoBlock(Location block, String key, boolean isEntity) {
     this.block = block;
-    this.id = id;
+    this.key = key;
+    this.isEntity = isEntity;
   }
 
   @Override
   public Location getLocation() {
-    return block.getLocation();
+    return block;
   }
 
   @Override
   public PluginType getType() {
-    return PluginType.VANILLA;
+    return PluginType.NEXO;
   }
 
   @Override
   public BlockType getBlockType() {
-    return BlockType.BLOCK;
+    return isEntity ? BlockType.FURNITURE : BlockType.BLOCK;
   }
 
   @Override
   public Material getMaterial() {
-    return block.getType();
+    return block.getWorld().getBlockAt(block).getType();
   }
 
   @Override
   public String getNamespacedKey() {
-    return block.getType().getKey().toString();
+    return key;
   }
 
   @Override
@@ -47,8 +48,9 @@ public class VanillaBlock implements FeaturedBlock {
   }
 
   public static FeaturedBlockI getBlockByLocation(Location loc) {
-    Block block = loc.getWorld().getBlockAt(loc);
-    return new VanillaBlock(block, block.hashCode());
+    if(com.nexomc.nexo.api.NexoBlocks.isCustomBlock(loc.getWorld().getBlockAt(loc))){
+        return
+    }
   }
 
   public static FeaturedBlockI getBlockByEntity(Entity entity) {

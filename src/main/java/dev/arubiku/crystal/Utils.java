@@ -9,6 +9,8 @@ public class Utils {
     AddonProvider<StorageAddonimplements> storageProvider = new AddonProvider<StorageAddonimplements>((conf) -> {
       return conf.contains("Addons.storage");
     }, plugin);
+
+    plugin.addons.add(storageProvider);
   }
 
 }

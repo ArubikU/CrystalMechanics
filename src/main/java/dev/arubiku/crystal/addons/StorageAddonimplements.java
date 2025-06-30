@@ -1,6 +1,7 @@
 package dev.arubiku.crystal.addons;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -45,6 +47,18 @@ public class StorageAddonimplements extends Addon implements Listener {
   Set<Integer> storageSlots;
   Map<Integer, Mask> masks = new HashMap<>();
   Set<Integer> notStorageSlots;
+
+  private static List<Integer> openedGuis = new ArrayList<>();
+
+  public void openGui(Player player) {
+    if (openedGuis.contains(id))
+      return;
+
+  }
+
+  public boolean inUse() {
+    return openedGuis.contains(id);
+  }
 
   @Override
   public void save() {

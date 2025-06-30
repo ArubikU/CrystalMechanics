@@ -37,6 +37,8 @@ public class CrystalListener implements EventListener {
   }
 
   private void handleStorageSlot(InventoryClickEvent event, CrystalHolder holder, int slot) {
+    if (!holder.getStorageSlots().contains(slot))
+      event.setCancelled(true);
     if (holder.getMasks().containsKey(slot)) {
       if (!holder.getMasks().get(slot).isAllowed(event.getCurrentItem())) {
         event.setCancelled(true);
